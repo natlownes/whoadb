@@ -3,6 +3,9 @@
 Not actually a DB:   But write JSON objects to a flat file using this if you
 want.
 
+[![Build
+Status](https://travis-ci.org/natlownes/whoadb.png?branch=master)](https://travis-ci.org/natlownes/whoadb)
+
 This is a component I extracted from a test REST server used if you're working
 on a front end app that RESTfully stores data and you want to click around for a
 little bit without firing up an actual backend.
