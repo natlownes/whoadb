@@ -1,6 +1,6 @@
 # WhoaDB(!)
 
-Not actually a DB:   But write JSON objects to a flat file using this if you
+Not actually a DB:   But read/write JSON objects to/from a flat file using this if you
 want.
 
 [![Build
@@ -10,6 +10,7 @@ This is a component I extracted from a test REST server used if you're working
 on a front end app that RESTfully stores data and you want to click around for a
 little bit without firing up an actual backend.
 
+### Starting
 
 ```coffeescript
 WhoaDB = require 'whoadb'
@@ -18,6 +19,30 @@ persistFile = '/tmp/whoadb.json'
 
 db = new WhoaDB(persistFile)
 
+```
+
+### Finding
+
+```coffeescript
+record1 = { id: 'fff', name:  "food", _collection: "edibles" }
+record2 = { id: 'ggg', name:  "more food", _collection: "edibles" }
+
+db.insert(record1)
+db.insert(record2)
+
+db.all('edibles')
+
+# => [ record1, record2 ]
+
+db.find('edibles', 'fff')
+
+# => record1
+
+```
+
+### Create & Update & Destroy
+
+```coffeescript
 record = { name:  "food", _collection: "edibles" }
 
 db.insert(record)
@@ -31,6 +56,29 @@ db.insert(record)
 # record updated
 
 db.destroy(record)
+
 ```
 
+### Records without the ```_collection``` key
 
+If a record doesn't have a ```_collection``` key, it'll be added to the
+```undefined``` collection.
+
+```coffeescript```
+record1 = { id: 'fff', name:  "food" }
+
+db.insert(record1)
+
+db.all(undefined)
+
+# => [ record1 ]
+
+db.find(undefined, 'fff')
+
+# => record1
+
+
+```
+
+I'll be throwing the aforementioned test REST server up here as well so the
+existence of this in isolation doesn't seem quite so damned weird.
