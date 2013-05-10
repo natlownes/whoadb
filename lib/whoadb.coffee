@@ -43,13 +43,7 @@ class WhoaDB
 
   initializeStore: (filepath) ->
     if filepath? and fs.existsSync(filepath)
-      try
-        JSON.parse(fs.readFileSync(filepath, 'UTF-8'))
-      catch error
-        console.log "\n
-        #{error} - JSON parsing error trying to parse #{filepath}, continuing...
-        \n"
-        {}
+      JSON.parse(fs.readFileSync(filepath, 'UTF-8'))
     else
       {}
 
