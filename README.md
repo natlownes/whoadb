@@ -12,6 +12,10 @@ little bit without firing up an actual backend.
 
 ### Starting
 
+```
+npm install whoadb`
+```
+
 ```coffeescript
 WhoaDB = require 'whoadb'
 
