@@ -5,6 +5,7 @@ md5    = require 'MD5'
 
 WhoaDB = require('../lib/whoadb')
 
+
 describe 'WhoaDB', ->
   beforeEach ->
     @dbpath = path.resolve 'tmp/testdb.json'

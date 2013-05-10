@@ -1,8 +1,11 @@
 md5         = require 'MD5'
 fs          = require 'fs'
-# *WhoaDB* stores JSON-able objects to a flat file.
+
+
+# *WhoaDB* stores and reads JSON-able objects to and from a flat file.
 #
 #
+
 
 class WhoaDB
   constructor: (filepath) ->
