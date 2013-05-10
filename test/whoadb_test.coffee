@@ -31,11 +31,11 @@ describe 'WhoaDB', ->
         data = 'RAAAAAAWR!!!!'
         fs.writeFileSync(@dbpath, data)
 
-      it 'should set an empty @store object', ->
-        db = new WhoaDB(@dbpath)
+      it 'should throw error', ->
+        operation = =>
+          new WhoaDB(@dbpath)
 
-        expect( db.store ).to.be.empty
-        expect( db.store ).to.be.an 'object'
+        expect( operation ).to.throw SyntaxError
 
   context 'when db file does not exist', ->
     it 'should set an empty @store object', ->
