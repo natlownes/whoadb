@@ -64,7 +64,7 @@ db.destroy(record)
 If a record doesn't have a ```_collection``` key, it'll be added to the
 ```undefined``` collection.
 
-```coffeescript```
+```coffeescript
 record1 = { id: 'fff', name:  "food" }
 
 db.insert(record1)
@@ -76,7 +76,6 @@ db.all(undefined)
 db.find(undefined, 'fff')
 
 # => record1
-
 
 ```
 
