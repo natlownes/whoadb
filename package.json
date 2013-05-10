@@ -1,0 +1,20 @@
+{
+  "name": "whoadb",
+  "author": "Nat Lownes <nat.lownes@gmail.com>",
+  "description": "Store JSON objects in a flat file if you want!",
+  "version": "0.0.1",
+  "dist": "pkg",
+  "dependencies": {
+    "coffee-script": "~1.4.0",
+    "fs-extra": "~0.4.0",
+    "MD5": "~1.0.3"
+  },
+  "devDependencies": {
+    "honk-cake": "git://github.com/natlownes/honk-cake.git#dependencies",
+    "mocha": "~1.8.1",
+    "chai": "~1.4.2"
+  },
+  "scripts": {
+    "test": "cake test"
+  }
+}
