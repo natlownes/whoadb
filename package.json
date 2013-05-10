@@ -16,5 +16,22 @@
   },
   "scripts": {
     "test": "cake test"
-  }
+  },
+  "gitHead": "25a0a98a912629f4f50dca8063de19a602345481",
+  "readmeFilename": "README.md",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/natlownes/whoadb.git"
+  },
+  "keywords": [
+    "json",
+    "file",
+    "flatfile",
+    "test",
+    "testing"
+  ],
+  "license": "BSD"
 }
