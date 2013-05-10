@@ -2,7 +2,7 @@
   "name": "whoadb",
   "author": "Nat Lownes <nat.lownes@gmail.com>",
   "description": "Store and read JSON objects in a flat file if you want!",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "./index.coffee",
   "dependencies": {
     "coffee-script": "~1.4.0",
@@ -17,7 +17,6 @@
   "scripts": {
     "test": "cake test"
   },
-  "gitHead": "25a0a98a912629f4f50dca8063de19a602345481",
   "readmeFilename": "README.md",
   "directories": {
     "test": "test"
