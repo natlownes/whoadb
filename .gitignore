@@ -1,4 +1,5 @@
 node_modules
-tmp/whoadb.json
+tmp/*
+npm-debug.log
 
 
