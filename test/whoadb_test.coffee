@@ -3,7 +3,7 @@ fs     = require 'fs'
 path   = require 'path'
 md5    = require 'MD5'
 
-WhoaDB = require('../lib/whoadb')
+WhoaDB = require('../index')
 
 
 describe 'WhoaDB', ->
