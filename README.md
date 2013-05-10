@@ -8,25 +8,26 @@ on a front end app that RESTfully stores data and you want to click around for a
 little bit without firing up an actual backend.
 
 
-    WhoaDB = require 'whoadb'
+```coffeescript
+WhoaDB = require 'whoadb'
 
-    persistFile = '/tmp/whoadb.json'
+persistFile = '/tmp/whoadb.json'
 
-    db = new WhoaDB(persistFile)
+db = new WhoaDB(persistFile)
 
-    record = { name:  "food", _collection: "edibles" }
+record = { name:  "food", _collection: "edibles" }
 
-    db.insert(record)
+db.insert(record)
 
-    # record object is assigned an id
+# record object is assigned an id
 
-    record.name = "non-food"
+record.name = "non-food"
 
-    db.insert(record)
+db.insert(record)
 
-    # record updated
+# record updated
 
-    db.destroy(record)
-
+db.destroy(record)
+```
 
 
