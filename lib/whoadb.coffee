@@ -41,6 +41,10 @@ class WhoaDB
   persist: ->
     fs.writeFileSync(@dbpath, JSON.stringify(@store), 'UTF-8')
 
+  drop: ->
+    @store = {}
+    @persist()
+
   _initializeStore: (filepath) ->
     @store = if filepath? and fs.existsSync(filepath)
       JSON.parse(fs.readFileSync(filepath, 'UTF-8'))

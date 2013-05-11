@@ -62,6 +62,35 @@ describe 'WhoaDB', ->
 
       expect( data ).to.equal '{"a":"horses","b":"heist"}'
 
+  describe '#load', ->
+    it 'should load the store from @dbpath', ->
+
+  describe '#drop', ->
+    beforeEach ->
+      @db = new WhoaDB(@dbpath)
+
+      for i in [0..10]
+        obj =
+          name: "Object # #{i}"
+        @db.save(obj)
+
+    it 'should set @store to empty object', ->
+      expect( @db.store ).not.to.be.empt
+
+      @db.drop()
+
+      expect( @db.store ).to.be.empty
+
+    it 'should write empty object to disk', ->
+      expect( @db.store ).not.to.be.empt
+
+      @db.drop()
+
+      data = JSON.parse(fs.readFileSync(@dbpath, 'UTF-8'))
+
+      expect( data ).to.be.an 'object'
+      expect( data ).to.be.empty
+
   describe 'methods dealing with records', ->
     beforeEach ->
       @db = new WhoaDB(@dbpath)
