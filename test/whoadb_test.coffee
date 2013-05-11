@@ -66,19 +66,19 @@ describe 'WhoaDB', ->
     beforeEach ->
       @db = new WhoaDB(@dbpath)
 
-    describe '#insert', ->
-      context 'when inserting a record with no _collection key', ->
+    describe '#save', ->
+      context 'when saveing a record with no _collection key', ->
         beforeEach ->
           @record =
             name: 'Bookies'
 
         it 'should add it to @store[undefined]', ->
-          @db.insert(@record)
+          @db.save(@record)
 
           expect( @db.store[undefined][@record.id].name ).
             to.equal 'Bookies'
 
-      context 'when inserting a record without an id', ->
+      context 'when saveing a record without an id', ->
         beforeEach ->
           @record =
             name: 'Heath Bell'
@@ -87,7 +87,7 @@ describe 'WhoaDB', ->
         it 'should generate an id for the record', ->
           expectedId = md5(JSON.stringify(@record))
 
-          @db.insert(@record)
+          @db.save(@record)
 
           expect( @db.store['relievers'][expectedId]['id']).to.
             equal expectedId
@@ -95,18 +95,18 @@ describe 'WhoaDB', ->
         it 'should set the id on the returned record', ->
           expectedId = md5(JSON.stringify(@record))
 
-          record = @db.insert(@record)
+          record = @db.save(@record)
 
           expect(record.id).to.equal expectedId
 
         it 'should save the record to the @store', ->
-          @db.insert(@record)
+          @db.save(@record)
 
           expect( @db.store['relievers'][@record.id]['name'] ).
             to.equal 'Heath Bell'
 
         it 'should write the record to the file', ->
-          @db.insert(@record)
+          @db.save(@record)
 
           data = fs.readFileSync(@dbpath).toString('utf-8')
 
@@ -122,12 +122,12 @@ describe 'WhoaDB', ->
             name: 'Rollie Fingers'
             _collection: 'relievers'
 
-          @db.insert(@record)
+          @db.save(@record)
 
         it 'should update the attributes', ->
           @record.name = 'Rollie "Several" Fingers'
 
-          @db.insert(@record)
+          @db.save(@record)
 
           expect( @db.store['relievers'][@record.id].name ).
             to.equal 'Rollie "Several" Fingers'
@@ -135,7 +135,7 @@ describe 'WhoaDB', ->
         it 'should not create a duplicate', ->
           @record.name = 'Rollie "Several" Fingers'
 
-          @db.insert(@record)
+          @db.save(@record)
 
           expect( @db.all('relievers') ).to.have.length 1
 
@@ -147,7 +147,7 @@ describe 'WhoaDB', ->
           @db.store['relievers'] = undefined
 
         it 'should create an object for that _collection name', ->
-          @db.insert(@record)
+          @db.save(@record)
 
           expect( @db.store['relievers'] ).to.be.an 'object'
 
@@ -169,7 +169,7 @@ describe 'WhoaDB', ->
             name: 'Matt Williams',
             _collection: '3B'
 
-          @db.insert(@record)
+          @db.save(@record)
 
         it 'should remove the record from the store', ->
           @db.destroy(@record)
@@ -195,8 +195,8 @@ describe 'WhoaDB', ->
               name: 'Mike Schmidt'
               _collection: '3B'
 
-            @db.insert(@record2)
-            @db.insert(@record)
+            @db.save(@record2)
+            @db.save(@record)
 
           it 'when destroying one, should not destroy all from store', ->
             @db.destroy(@record)
@@ -230,7 +230,7 @@ describe 'WhoaDB', ->
             name: 'Mitch Williams'
             _collection: 'relievers'
 
-          @db.insert(@record)
+          @db.save(@record)
 
         it 'should return all objects in that collection', ->
           expect( @db.all('relievers') ).to.include @record
@@ -251,7 +251,7 @@ describe 'WhoaDB', ->
             name: 'Deadmau5'
             _collection: 'people'
 
-          @db.insert( record )
+          @db.save( record )
 
         it 'should return undefined', ->
           expect( @db.find('people', 'ddd') ).to.be.undefined
@@ -262,7 +262,7 @@ describe 'WhoaDB', ->
             name: 'RJD2'
             _collection: 'people'
 
-          @db.insert( @record )
+          @db.save( @record )
 
         it 'should return record', ->
           expect( @db.find('people', @record.id) ).

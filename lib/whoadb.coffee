@@ -20,7 +20,7 @@ class WhoaDB
 
   find: (collectionName, objectId) -> @store[collectionName]?[objectId]
 
-  insert: (record) ->
+  save: (record) ->
     if not @store[record._collection]?
       @store[record._collection] = {}
 

@@ -31,8 +31,8 @@ db = new WhoaDB(persistFile)
 record1 = { id: 'fff', name:  "food", _collection: "edibles" }
 record2 = { id: 'ggg', name:  "more food", _collection: "edibles" }
 
-db.insert(record1)
-db.insert(record2)
+db.save(record1)
+db.save(record2)
 
 db.all('edibles')
 
@@ -49,13 +49,13 @@ db.find('edibles', 'fff')
 ```coffeescript
 record = { name:  "food", _collection: "edibles" }
 
-db.insert(record)
+db.save(record)
 
 # record object is assigned an id
 
 record.name = "non-food"
 
-db.insert(record)
+db.save(record)
 
 # record updated
 
@@ -71,7 +71,7 @@ If a record doesn't have a ```_collection``` key, it'll be added to the
 ```coffeescript
 record1 = { id: 'fff', name:  "food" }
 
-db.insert(record1)
+db.save(record1)
 
 db.all(undefined)
 
