@@ -62,12 +62,68 @@ describe 'WhoaDB', ->
 
       expect( data ).to.equal '{"a":"horses","b":"heist"}'
 
+  describe '#load', ->
+    beforeEach ->
+      store =
+        villains:
+          4:
+            name: 'DOOM'
+
+      fs.writeFileSync(@dbpath, JSON.stringify(store), 'UTF-8')
+
+    it 'should load the store from @dbpath', ->
+      db = new WhoaDB(@dbpath)
+      db.load()
+
+      expect( db.find('villains', 4 ).name ).to.equal 'DOOM'
+
+    context 'when @store has existing, unpersisted data', ->
+      beforeEach ->
+        @db = new WhoaDB(@dbpath)
+        @db.store =
+          villians:
+            3:
+              name: 'Oh no'
+
+      it 'is going to lose that existing data', ->
+        expect( @db.find('villians', 3).name ).to.equal 'Oh no'
+
+        @db.load()
+
+        expect( @db.find('villians', 3) ).to.be.undefined
+
+  describe '#drop', ->
+    beforeEach ->
+      @db = new WhoaDB(@dbpath)
+
+      for i in [0..10]
+        obj =
+          name: "Object # #{i}"
+        @db.save(obj)
+
+    it 'should set @store to empty object', ->
+      expect( @db.store ).not.to.be.empt
+
+      @db.drop()
+
+      expect( @db.store ).to.be.empty
+
+    it 'should write empty object to disk', ->
+      expect( @db.store ).not.to.be.empt
+
+      @db.drop()
+
+      data = JSON.parse(fs.readFileSync(@dbpath, 'UTF-8'))
+
+      expect( data ).to.be.an 'object'
+      expect( data ).to.be.empty
+
   describe 'methods dealing with records', ->
     beforeEach ->
       @db = new WhoaDB(@dbpath)
 
     describe '#save', ->
-      context 'when saveing a record with no _collection key', ->
+      context 'when saving a record with no _collection key', ->
         beforeEach ->
           @record =
             name: 'Bookies'
