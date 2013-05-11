@@ -96,7 +96,7 @@ describe 'WhoaDB', ->
       @db = new WhoaDB(@dbpath)
 
     describe '#save', ->
-      context 'when saveing a record with no _collection key', ->
+      context 'when saving a record with no _collection key', ->
         beforeEach ->
           @record =
             name: 'Bookies'
