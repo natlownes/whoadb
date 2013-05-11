@@ -10,7 +10,7 @@ fs          = require 'fs'
 class WhoaDB
   constructor: (filepath) ->
     @dbpath = filepath
-    @store  = @initializeStore(filepath)
+    @_initializeStore(filepath)
 
   all: (collectionName) ->
     if @store[collectionName]
@@ -41,8 +41,8 @@ class WhoaDB
   persist: ->
     fs.writeFileSync(@dbpath, JSON.stringify(@store), 'UTF-8')
 
-  initializeStore: (filepath) ->
-    if filepath? and fs.existsSync(filepath)
+  _initializeStore: (filepath) ->
+    @store = if filepath? and fs.existsSync(filepath)
       JSON.parse(fs.readFileSync(filepath, 'UTF-8'))
     else
       {}
