@@ -1,3 +1,7 @@
+## 0.1.1 2013-05-11
+
+* add ```drop``` and ```load``` methods.
+
 ## 0.1.0 2013-05-11
 
 * Change 'insert' method renamed to 'save'.
