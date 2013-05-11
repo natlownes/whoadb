@@ -13,7 +13,7 @@ little bit without firing up an actual backend.
 ### Starting
 
 ```
-npm install whoadb`
+npm install whoadb
 ```
 
 ```coffeescript
