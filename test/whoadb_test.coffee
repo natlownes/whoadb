@@ -63,7 +63,34 @@ describe 'WhoaDB', ->
       expect( data ).to.equal '{"a":"horses","b":"heist"}'
 
   describe '#load', ->
+    beforeEach ->
+      store =
+        villains:
+          4:
+            name: 'DOOM'
+
+      fs.writeFileSync(@dbpath, JSON.stringify(store), 'UTF-8')
+
     it 'should load the store from @dbpath', ->
+      db = new WhoaDB(@dbpath)
+      db.load()
+
+      expect( db.find('villains', 4 ).name ).to.equal 'DOOM'
+
+    context 'when @store has existing, unpersisted data', ->
+      beforeEach ->
+        @db = new WhoaDB(@dbpath)
+        @db.store =
+          villians:
+            3:
+              name: 'Oh no'
+
+      it 'is going to lose that existing data', ->
+        expect( @db.find('villians', 3).name ).to.equal 'Oh no'
+
+        @db.load()
+
+        expect( @db.find('villians', 3) ).to.be.undefined
 
   describe '#drop', ->
     beforeEach ->

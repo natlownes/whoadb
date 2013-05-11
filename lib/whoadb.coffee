@@ -45,6 +45,8 @@ class WhoaDB
     @store = {}
     @persist()
 
+  load: -> @_initializeStore(@dbpath)
+
   _initializeStore: (filepath) ->
     @store = if filepath? and fs.existsSync(filepath)
       JSON.parse(fs.readFileSync(filepath, 'UTF-8'))
