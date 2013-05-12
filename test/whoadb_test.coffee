@@ -291,6 +291,26 @@ describe 'WhoaDB', ->
         it 'should return all objects in that collection', ->
           expect( @db.all('relievers') ).to.include @record
 
+      context 'with multiple records in collection', ->
+        beforeEach ->
+          @records = [
+            {name: 'Mitch Williams', _collection: 'relievers'},
+            {name: 'Larry Andersen', _collection: 'relievers'}
+          ]
+
+          for record in @records
+            @db.save(record)
+
+        it 'should return all objects in that collections', ->
+          results = @db.all('relievers')
+
+          expect( results ).to.have.length 2
+
+          names = (record.name for record in results)
+
+          expect( names ).to.include 'Larry Andersen'
+          expect( names ).to.include 'Mitch Williams'
+
     describe '#find', ->
 
       context 'when collection does not exist', ->
