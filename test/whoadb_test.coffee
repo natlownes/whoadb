@@ -134,7 +134,7 @@ describe 'WhoaDB', ->
           expect( @db.store[undefined][@record.id].name ).
             to.equal 'Bookies'
 
-      context 'when saveing a record without an id', ->
+      context 'when saving a record without an id', ->
         beforeEach ->
           @record =
             name: 'Heath Bell'
