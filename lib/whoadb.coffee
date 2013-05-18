@@ -1,5 +1,6 @@
-md5         = require 'MD5'
-fs          = require 'fs'
+md5  = require 'MD5'
+fs   = require 'fs'
+uuid = require 'node-uuid'
 
 
 # *WhoaDB* stores and reads JSON-able objects to and from a flat file.
@@ -24,8 +25,7 @@ class WhoaDB
     if not @store[record._collection]?
       @store[record._collection] = {}
 
-    if not record.id
-      record.id = md5(JSON.stringify(record))
+    if not record.id? then record.id = uuid.v4()
 
     @store[record._collection][record.id] = record
     @persist()

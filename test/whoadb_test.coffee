@@ -140,20 +140,22 @@ describe 'WhoaDB', ->
             name: 'Heath Bell'
             _collection: 'relievers'
 
-        it 'should generate an id for the record', ->
-          expectedId = md5(JSON.stringify(@record))
-
+        it 'should allow access to object using the set id', ->
           @db.save(@record)
 
-          expect( @db.store['relievers'][expectedId]['id']).to.
-            equal expectedId
+          expect( @db.store['relievers'][@record.id] ).to.
+            equal @record
 
-        it 'should set the id on the returned record', ->
-          expectedId = md5(JSON.stringify(@record))
-
+        it 'should return a record equal to the saved record', ->
           record = @db.save(@record)
 
-          expect(record.id).to.equal expectedId
+          expect( record ).to.equal @record
+
+        it 'should set the id on the returned record', ->
+          record = @db.save(@record)
+
+          expect(record.id).
+            not.to.be.undefined
 
         it 'should save the record to the @store', ->
           @db.save(@record)
