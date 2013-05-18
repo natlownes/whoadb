@@ -1,3 +1,7 @@
+## 0.1.2 2013-05-18
+
+* replace md5 id generation with uuid v4
+
 ## 0.1.1 2013-05-11
 
 * add ```drop``` and ```load``` methods.
