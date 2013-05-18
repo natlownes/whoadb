@@ -1,4 +1,3 @@
-md5  = require 'MD5'
 fs   = require 'fs'
 uuid = require 'node-uuid'
 

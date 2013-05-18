@@ -1,7 +1,6 @@
 expect = require('chai').expect
 fs     = require 'fs'
 path   = require 'path'
-md5    = require 'MD5'
 
 WhoaDB = require('../index')
 
