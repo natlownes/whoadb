@@ -2,13 +2,13 @@ expect = require('chai').expect
 fs     = require 'fs'
 path   = require 'path'
 
-WhoaDB = require('../index')
+WhoaDB = require('../src/index')
 
 
 describe 'WhoaDB', ->
   beforeEach ->
     @dbpath = path.resolve 'tmp/testdb.json'
-    fs.unlinkSync(@dbpath) if fs.existsSync(@dbpath)
+    if fs.existsSync(@dbpath) then fs.unlinkSync(@dbpath)
 
   context 'when db file does exist', ->
     context 'and contains parsable json', ->

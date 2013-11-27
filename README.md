@@ -1,14 +1,15 @@
 # WhoaDB(!)
 
-Not actually a DB:   But read/write JSON objects to/from a flat file using this if you
-want.
+Not actually a DB:   But read/write JSON objects to/from a flat file using this
+if you want.
 
 [![Build
 Status](https://travis-ci.org/natlownes/whoadb.png?branch=master)](https://travis-ci.org/natlownes/whoadb)
 
-This is a component I extracted from a test REST server used if you're working
-on a front end app that RESTfully stores data and you want to click around for a
-little bit without firing up an actual backend.
+This is a component I extracted from a [test REST
+server](http://github.com/natlownes/headrest) used if you're working on a front
+end app that RESTfully stores data and you want to click around for a little bit
+without firing up an actual backend.
 
 ### Starting
 
@@ -82,6 +83,3 @@ db.find(undefined, 'fff')
 # => record1
 
 ```
-
-I'll be throwing the aforementioned test REST server up here as well so the
-existence of this in isolation doesn't seem quite so damned weird.

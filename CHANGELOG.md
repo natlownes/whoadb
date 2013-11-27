@@ -1,3 +1,7 @@
+## 0.1.3 2013-11-27
+
+* remove coffee-script as a dependency, move to devDependencies
+
 ## 0.1.2 2013-05-18
 
 * replace md5 id generation with uuid v4

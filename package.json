@@ -2,24 +2,28 @@
   "name": "whoadb",
   "author": "Nat Lownes <nat.lownes@gmail.com>",
   "description": "Store and read JSON objects in a flat file if you want!",
-  "version": "0.1.2",
-  "main": "./index.coffee",
+  "version": "0.1.3",
+  "main": "./lib/index.js",
   "dependencies": {
-    "coffee-script": "~1.4.0",
     "fs-extra": "~0.4.0",
     "node-uuid": "~1.4.0"
   },
   "devDependencies": {
-    "honk-cake": "git://github.com/natlownes/honk-cake.git#develop",
+    "coffee-script": "~1.6.0",
+    "honk-cake": ">=0.0.5",
     "mocha": "~1.8.1",
     "chai": "~1.4.2"
   },
   "scripts": {
-    "test": "cake test"
+    "test": "cake test",
+    "test:watch": "cake test:watch",
+    "build": "find ./src -iname '*.coffee' | xargs coffee -c -o lib"
   },
   "readmeFilename": "README.md",
   "directories": {
-    "test": "test"
+    "test": "test",
+    "src": "src",
+    "lib": "lib"
   },
   "repository": {
     "type": "git",
@@ -28,6 +32,9 @@
   "keywords": [
     "json",
     "file",
+    "db",
+    "database",
+    "fs",
     "flatfile",
     "test",
     "testing"
